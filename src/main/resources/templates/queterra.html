@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+</head>
+<body>
+<h2>Mails</h2>
+<ul id="list"></ul>
+</body>
+<script>
+    var $list = $('#list');
+
+    $.ajax({
+        url: 'http://193.254.217.70:4565/api/v1/all/application//question/terragram',
+        method: 'GET',
+        contentType: "application/json; charset=utf-8"
+    }).done(function(mails) {
+        $.each(mails, function(i, item) {
+            $list.append('<li>' + item.email + '</li>');
+        });
+    }).fail(function(err) {
+        console.error('err', err);
+    });
+</script>
+</html>
